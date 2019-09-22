@@ -1,0 +1,11 @@
+node                                     
+  version: 10.16.3 LTS (Long Term Support)
+  reason: is the top ActiveLTS version
+
+  docker:
+    FROM node:10.16.3-alpine                  
+
+react
+
+docker                             
+   docker exec -it dash-ui /bin/sh

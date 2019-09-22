@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  #################################
+  # dashboard-kdm-styles
+  #################################
+  dash-kdm-styles:
+    container_name: dashKdmStyles
+    build:
+      context: ./services/dashboard-ui/libs/kdm-styles
+      dockerfile: dockerfile.build
+    volumes:
+      - ./services/dashboard-ui/libs/kdm-styles:/app
+
+  ##################################
+  ## dashboard-kdm-components
+  ##################################
+  dash-kdm-components:
+    container_name: dashKdmComponents
+    build:
+      context: ./services/dashboard-ui/libs/kdm-components
+      dockerfile: dockerfile.build
+    volumes:
+      - ./services/dashboard-ui/libs/kdm-components:/app
+
+  #################################
+  # dashboard-ui
+  #################################
+  dashboard-ui:
+    container_name: dash-ui
+    build:
+      context: ./services/dashboard-ui
+      dockerfile: dockerfile.build
+    volumes:
+      - ./services/dashboard-ui:/app
+
+  #################################
+  # dashboard-api
+  #################################
+  #dashboard-api:
+  #  container_name: dash-api
+  #  image: dashboard-api
+  #  build:
+  #    context: ./services/dashboard-api
+  #    dockerfile: dockerfile-dev
+  #  volumes:
+  #    - ./services/dashboard-api:/app
+  #  ports:
+  #    - ${DSBD_API_PORT}:5000
+  #    - ${DSBD_API_DBG_PORT}:5001

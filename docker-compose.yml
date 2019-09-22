@@ -1,0 +1,57 @@
+version: '3'
+
+# USE FOR DEBUGGING THE CONTAINER
+#    stdin_open: true
+#    tty: true
+#    entrypoint: /bin/sh
+
+
+services:
+  #################################
+  # dashboard-kdm-components
+  #################################
+  dash-kdm-components:
+    container_name: dashKdmComponents
+    build:
+      context: ./services/dashboard-ui/libs/kdm-components
+      dockerfile: dockerfile
+    volumes:
+      - ./services/dashboard-ui/libs/kdm-components:/app
+    #stdin_open: true
+    #tty: true
+    #entrypoint: /bin/sh
+
+  #################################
+  # dashboard-ui
+  #################################
+  dashboard-ui:
+    container_name: dash-ui
+    build:
+      context: ./services/dashboard-ui
+      dockerfile: dockerfile
+    expose:
+      - ${DSBD_WEB_PORT}
+      - ${DSBD_WEB_FS_PORT}
+    ports:
+      - ${DSBD_WEB_PORT}:3000
+      - ${DSBD_WEB_FS_PORT}:${DSBD_WEB_FS_PORT}
+    volumes:
+      - ./services/dashboard-ui:/app
+    #stdin_open: true
+    #tty: true
+    #entrypoint: /bin/sh
+    
+  #################################
+  # dashboard-api
+  #################################
+  #dashboard-api:
+  #  container_name: dash-api
+  #  image: dashboard-api
+  #  build:
+  #    context: ./services/dashboard-api
+  #    dockerfile: dockerfile-dev
+  #  volumes:
+  #    - ./services/dashboard-api:/app
+  #  ports:
+  #    - ${DSBD_API_PORT}:5000
+  #    - ${DSBD_API_DBG_PORT}:5001

@@ -1,0 +1,3 @@
+[submodule "services/dashboard-ui"]
+	path = services/dashboard-ui
+	url = git@github.com:craft-de-jet/ray-dashboard-web-react.git
