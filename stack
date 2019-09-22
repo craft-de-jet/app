@@ -8,8 +8,16 @@
 ## react
 
 ## docker                             
-   docker exec -it dash-ui /bin/sh
+  docker exec -it dash-ui /bin/sh
 
+  cd services/dashboard-web-react
+
+  docker build -t mydemo .
+
+  docker run -v ${PWD}:/app -v ${pwd}/node_modules:/app/node_modules -p 3000:3000 -p 35729:35729 --rm mydemo
+
+  docker ps
+  docker exec -it <container_name> /bin/sh
 
 ## clone & run
   git clone git@github.com:craft-de-jet/app.git ray
